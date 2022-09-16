@@ -11,7 +11,6 @@ exports.handler = async function () {
   const webhookUrl = `https://hooks.slack.com/services/${slackUserId}/${slackChannelId}/${slackApiSecret}`;
   const buildLogUrl = `https://app.netlify.com/sites/${siteName}/deploys/${deployId}`;
 
-  if (siteName.includes('staging')) {
     // Only send message during main production deployment
     await fetch(webhookUrl, {
       method: 'POST',
@@ -31,7 +30,7 @@ exports.handler = async function () {
         ],
       }),
     });
-  }
+  
   return {
     statusCode: 200,
     body: JSON.stringify({}),
