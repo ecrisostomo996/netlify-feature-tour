@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-module.exports.handler = async () => {
+module.exports.handler = async function (event, context) {
   const siteName = process.env.SITE_NAME;
   const deployContext = process.env.CONTEXT;
   const slackUserId = process.env.SLACK_WEBHOOK_USER_ID;
@@ -29,7 +29,8 @@ module.exports.handler = async () => {
         },
        ],
      }),
-  });
+  },
+);
 
     return {
     statusCode: 200,
