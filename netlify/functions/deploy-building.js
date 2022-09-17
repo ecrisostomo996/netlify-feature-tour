@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-exports.handler = async () => {
+module.exports.handler = async () => {
   const siteName = process.env.SITE_NAME;
   const deployContext = process.env.CONTEXT;
   const slackUserId = process.env.SLACK_WEBHOOK_USER_ID;
