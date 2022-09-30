@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-exports.handler = async () =>{
+exports.handler = async function(event, context) {
   const siteName = process.env.SITE_NAME;
   const deployContext = process.env.CONTEXT;
   const slackUserId = process.env.SLACK_WEBHOOK_USER_ID;
@@ -11,31 +11,9 @@ exports.handler = async () =>{
   const webhookUrl = `https://hooks.slack.com/services/${slackUserId}/${slackChannelId}/${slackApiSecret}`;
   const buildLogUrl = `https://app.netlify.com/sites/${siteName}/deploys/${deployId}`;
 
-  console.log("test deploy");
-
-  // Only send message during main production deployment
-    await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-      'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-      text: `There's a new deploy in process for ${deployContext}`,
-      blocks: [
-          {
-          type: 'section',
-          text: {
-              type: 'mrkdwn',
-              text: `\n>Visit the <${buildLogUrl} |build log>`,
-          },
-          },
-        ],
-      }),
-    },
-  );
+  console.log(JSON.parse(event.body))
 
     return {
-    statusCode: 200,
-    body: JSON.stringify({}),
+      statusCode: 200
     };
 };
