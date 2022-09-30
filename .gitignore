@@ -19,5 +19,4 @@ yarn-error.log*
 
 _old/
 
-# Local Netlify folder
-.netlify
+
