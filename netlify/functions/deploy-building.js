@@ -13,6 +13,27 @@ exports.handler = async function(event, context) {
 
   console.log(JSON.parse(event.body))
 
+  // Only send message during main production deployment
+    await fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+      'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+      text: `There's a new deploy in process for ${deployContext}`,
+      blocks: [
+          {
+          type: 'section',
+          text: {
+              type: 'mrkdwn',
+              text: `\n>Visit the <${buildLogUrl} |build log>`,
+          },
+          },
+        ],
+      }),
+    },
+  );
+
     return {
       statusCode: 200
     };
