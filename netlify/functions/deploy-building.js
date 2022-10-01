@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 
 exports.handler = async function(event, context) {
   const siteName = process.env.SITE_NAME;
