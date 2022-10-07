@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-exports.handler = async () => {
+export async function handler() {
   const siteName = process.env.SITE_NAME;
   const deployContext = process.env.CONTEXT;
   const slackUserId = process.env.SLACK_WEBHOOK_USER_ID;
@@ -39,4 +39,4 @@ exports.handler = async () => {
   return {
     statusCode: 200
   };
-};
+}
