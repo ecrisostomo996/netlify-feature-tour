@@ -11,6 +11,7 @@ exports.handler = async () => {
   const webhookUrl = `https://hooks.slack.com/services/${slackUserId}/${slackChannelId}/${slackApiSecret}`;
   const buildLogUrl = `https://app.netlify.com/sites/${siteName}/deploys/${deployId}`;
 
+
   // Only send message during main production deployment
   if(deployContext == 'production'){
       await fetch(webhookUrl, {
@@ -25,7 +26,7 @@ exports.handler = async () => {
             type: 'section',
             text: {
                 type: 'mrkdwn',
-                text: `\n>Visit the <${buildLogUrl} |build log>`,
+                text: `\n>Visit the <${buildLogUrl} |build log ${process.env.DEPLOY_ID}>`,
             },
             },
           ],
