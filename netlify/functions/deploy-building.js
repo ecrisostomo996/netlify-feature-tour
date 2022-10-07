@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
-export async function handler() {
+exports.handler = async () => {
   const siteName = process.env.SITE_NAME;
   const deployContext = process.env.CONTEXT;
   const slackUserId = process.env.SLACK_WEBHOOK_USER_ID;
@@ -26,7 +26,7 @@ export async function handler() {
             type: 'section',
             text: {
                 type: 'mrkdwn',
-                text: `\n>Visit the <${buildLogUrl} |build log ${process.env.DEPLOY_ID}>`,
+                text: `\n>Visit the <${buildLogUrl} |build log ${DEPLOY_ID}>`,
             },
             },
           ],
@@ -39,4 +39,4 @@ export async function handler() {
   return {
     statusCode: 200
   };
-}
+};
