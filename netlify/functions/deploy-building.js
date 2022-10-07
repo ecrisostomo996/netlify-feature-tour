@@ -1,4 +1,4 @@
-const fetch = require('cross-fetch');
+const fetch = require('node-fetch');
 
 exports.handler = async () => {
   const siteName = process.env.SITE_NAME;
