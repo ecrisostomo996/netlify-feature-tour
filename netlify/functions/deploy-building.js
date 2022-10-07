@@ -13,24 +13,23 @@ exports.handler = async () => {
 
 
   // Only send message during main production deployment
-    await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
+  await fetch(webhookUrl, {
+    method: 'POST',
+    headers: {
       'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-      blocks: [
-          {
+    },
+    body: JSON.stringify({
+    blocks: [
+        {
           type: 'section',
           text: {
               type: 'mrkdwn',
               text: `There's a new deploy in process for ${deployContext} \n>Visit the <${buildLogUrl} |build log ${process.env.DEPLOY_ID}>`,
-          },
-          },
-        ],
-      }),
-    },
-  );
+            },
+        },
+      ],
+    }),
+  });
       
 
 
